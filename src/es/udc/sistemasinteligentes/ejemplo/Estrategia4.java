@@ -10,7 +10,8 @@ public class Estrategia4 implements EstrategiaBusqueda {
     }
 
     @Override
-    public Estado soluciona(ProblemaBusqueda p) throws Exception{
+    public Nodo[] soluciona(ProblemaBusqueda p) throws Exception{
+        ArrayList<Nodo> solucion = new ArrayList<Nodo>();
         ArrayList<Estado> explorados = new ArrayList<Estado>();
         Estado estadoActual = p.getEstadoInicial();
         explorados.add(estadoActual);
@@ -32,6 +33,7 @@ public class Estrategia4 implements EstrategiaBusqueda {
                     explorados.add(estadoActual);
                     modificado = true;
                     System.out.println((i++) + " - Estado actual cambiado a " + estadoActual);
+                    Nodo(estadoActual, acc, );
                     break;
                 }
                 else
