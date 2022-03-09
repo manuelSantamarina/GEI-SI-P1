@@ -29,13 +29,28 @@ public class Estrategia4 implements EstrategiaBusqueda {
     }
 
     @Override
+<<<<<<< HEAD
     public Nodo[] soluciona(ProblemaBusqueda p) throws Exception{
         ArrayList<Nodo> nodosRecorridos = new ArrayList<Nodo>();
+=======
+    public Estado soluciona(ProblemaBusqueda p) throws Exception{
+>>>>>>> wip
         ArrayList<Estado> explorados = new ArrayList<Estado>();
+
+        //Esto es nuestra lista de nodos explorados
+        ArrayList<Nodo> nodosExplorados = new ArrayList<>();
+
+
         Estado estadoActual = p.getEstadoInicial();
         explorados.add(estadoActual);
+<<<<<<< HEAD
         Nodo nodoPadre = null;
 
+=======
+        //Insertamos el primer nodo en la lista.
+        Nodo nodoPadre = new Nodo(estadoActual,null,null);
+        nodosExplorados.add(nodoPadre);
+>>>>>>> wip
         int i = 1;
 
         System.out.println((i++) + " - Empezando búsqueda en " + estadoActual);
@@ -50,7 +65,16 @@ public class Estrategia4 implements EstrategiaBusqueda {
                 if (!explorados.contains(sc)) {
                     estadoActual = sc;
                     System.out.println((i++) + " - " + sc + " NO explorado");
+<<<<<<< HEAD
                     explorados.add(estadoActual); //Si quitamos esto entra en bucle infinito
+=======
+                    explorados.add(estadoActual);
+                    //insertamos el estado en los nodos también
+                    Nodo nodoActual = new Nodo(estadoActual,acc,nodoPadre);
+                    nodosExplorados.add(nodoActual);
+                    nodoPadre = nodoActual;
+
+>>>>>>> wip
                     modificado = true;
                     //Creamos un nodo con el estado actual,
                     //la acción que se llevó a cabo para llegar a ese estado y el nodo padre al que apunta

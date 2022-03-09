@@ -8,10 +8,14 @@ public class Nodo {
     Accion accion;
     Nodo nodoPadre;
 
-    public Nodo(Estado estado, Accion accion, Nodo nodo) {
+    public Nodo(Estado estado, Accion accion, Nodo nodoPadre) {
         this.estado = estado;
         this.accion = accion;
+<<<<<<< HEAD
         this.nodoPadre = nodo;
+=======
+        this.nodoPadre = nodoPadre;
+>>>>>>> wip
     }
 
     public Estado getEstado() {

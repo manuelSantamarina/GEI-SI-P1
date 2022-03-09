@@ -11,8 +11,13 @@ public class Main {
                                                                                                     ProblemaAspiradora.EstadoAspiradora.PosicionBasura.AMBAS);
         ProblemaBusqueda aspiradora = new ProblemaAspiradora(estadoInicial);
 
+<<<<<<< HEAD
         EstrategiaBusqueda buscador = new Estrategia4();
         Nodo[] solucion=buscador.soluciona(aspiradora);
         System.out.println(solucion[solucion.length-1].getEstado());
+=======
+        EstrategiaBusqueda buscador = new Estrategia4ref();
+        System.out.println(buscador.soluciona(aspiradora));
+>>>>>>> wip
     }
 }
