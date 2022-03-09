@@ -7,4 +7,5 @@ public interface EstrategiaBusqueda {
      * @return Estado meta obtenido[
      */
     public abstract Nodo[] soluciona(ProblemaBusqueda p) throws Exception;
+    public abstract Nodo[] reconstruye_sol(Nodo[] explorados) throws Exception;
 }

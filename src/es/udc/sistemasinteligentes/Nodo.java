@@ -13,7 +13,13 @@ public class Nodo {
         this.accion = accion;
         this.nodoPadre = nodo;
     }
-
+    public boolean isSolucion(){
+        boolean outcome = false;
+        if(this.nodoPadre == null){
+            outcome = true;
+        }
+        return outcome;
+    }
     public Estado getEstado() {
         return estado;
     }
@@ -22,7 +28,17 @@ public class Nodo {
         return accion;
     }
 
-    public Nodo getNodo() {
+    public Nodo getNodoPadre() {
         return nodoPadre;
+    }
+
+
+    @Override
+    public String toString() {
+        return "(" +
+                 estado +
+                "," + accion +
+                "," + nodoPadre +
+                ')';
     }
 }
