@@ -6,12 +6,12 @@ public class Nodo {
 
     Estado estado;
     Accion accion;
-    Nodo nodo;
+    Nodo nodoPadre;
 
     public Nodo(Estado estado, Accion accion, Nodo nodo) {
         this.estado = estado;
         this.accion = accion;
-        this.nodo = nodo;
+        this.nodoPadre = nodo;
     }
 
     public Estado getEstado() {
@@ -23,6 +23,6 @@ public class Nodo {
     }
 
     public Nodo getNodo() {
-        return nodo;
+        return nodoPadre;
     }
 }

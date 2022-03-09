@@ -9,10 +9,32 @@ public class Estrategia4 implements EstrategiaBusqueda {
     public Estrategia4() {
     }
 
+    public Nodo[] reconstruye_sol(Nodo node){
+        int i = 0;
+        ArrayList<Nodo> arrayNodos = new ArrayList<>();
+        Nodo nodoActual = node;
+
+        while(nodoActual != null){
+            arrayNodos.add(nodoActual);
+            nodoActual=nodoActual.getNodo(); //Obtenemos el nodo padre
+        }
+
+        Nodo[] solucion = new Nodo[arrayNodos.size()];
+        for(Nodo nodo:arrayNodos){
+            solucion[i]=nodo;
+            i++;
+        }
+
+        return solucion;
+    }
+
     @Override
     public Nodo[] soluciona(ProblemaBusqueda p) throws Exception{
-        ArrayList<Nodo> explorados = new ArrayList<Nodo>();
+        ArrayList<Nodo> nodosRecorridos = new ArrayList<Nodo>();
+        ArrayList<Estado> explorados = new ArrayList<Estado>();
         Estado estadoActual = p.getEstadoInicial();
+        explorados.add(estadoActual);
+        Nodo nodoPadre = null;
 
         int i = 1;
 
@@ -28,8 +50,15 @@ public class Estrategia4 implements EstrategiaBusqueda {
                 if (!explorados.contains(sc)) {
                     estadoActual = sc;
                     System.out.println((i++) + " - " + sc + " NO explorado");
-                    explorados.add(new Nodo(estadoActual, acc, null));
+                    explorados.add(estadoActual); //Si quitamos esto entra en bucle infinito
                     modificado = true;
+                    //Creamos un nodo con el estado actual,
+                    //la acción que se llevó a cabo para llegar a ese estado y el nodo padre al que apunta
+                    Nodo node = new Nodo(estadoActual, acc, nodoPadre);
+                    nodosRecorridos.add(node);
+                    nodoPadre=node; //En la siguiente iteración hacemos que el nuevo
+                                    // nodo apunte a su padre (el nodo anterior)
+
                     System.out.println((i++) + " - Estado actual cambiado a " + estadoActual);
                     break;
                 }
@@ -39,6 +68,13 @@ public class Estrategia4 implements EstrategiaBusqueda {
             if (!modificado) throw new Exception("No se ha podido encontrar una solución");
         }
         System.out.println((i++) + " - FIN - " + estadoActual);
-        return explorados.toArray(new Nodo[0]);
+
+        Nodo[] solucion = new Nodo[nodosRecorridos.size()];
+        int cont = 0;
+        for(Nodo nodo:nodosRecorridos){
+            solucion[cont] = nodo;
+            cont++;
+        }
+        return solucion;
     }
 }
