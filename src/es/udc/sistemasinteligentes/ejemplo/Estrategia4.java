@@ -20,7 +20,6 @@ public class Estrategia4 implements EstrategiaBusqueda {
         Nodo nodoPadre = null;
 
         int i = 1;
-        int j=0;
 
         System.out.println((i++) + " - Empezando búsqueda en " + estadoActual);
 
@@ -54,9 +53,9 @@ public class Estrategia4 implements EstrategiaBusqueda {
         }
         System.out.println((i++) + " - FIN - " + estadoActual);
 
-        Nodo[] nodosExplorados = new Nodo[nodosRecorridos.size()];
+        Nodo[] nodosExplorados = new Nodo[nodosRecorridos.size()]; //Creamos una lista de Nodos
         int cont = 0;
-        for(Nodo nodo:nodosRecorridos){
+        for(Nodo nodo:nodosRecorridos){ //Introducimos en la lista de nodos cada elemento del arraylist de nodosRecorridos
             nodosExplorados[cont] = nodo;
             cont++;
         }
