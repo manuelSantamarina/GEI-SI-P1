@@ -13,7 +13,7 @@ public class Main {
                                                                                                     ProblemaAspiradora.EstadoAspiradora.PosicionBasura.AMBAS);
         ProblemaBusqueda aspiradora = new ProblemaAspiradora(estadoInicial);
 
-        EstrategiaBusqueda buscador = new Estrategia4();
+        EstrategiaBusqueda buscador = new EstrategiaBusquedaGrafo();
         Nodo[] explorados=buscador.soluciona(aspiradora);
         Nodo[] sol = buscador.reconstruye_sol(explorados);
         System.out.println("Solución:");

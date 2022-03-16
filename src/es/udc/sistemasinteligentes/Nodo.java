@@ -37,8 +37,7 @@ public class Nodo {
     public String toString() {
         return "(" +
                  estado +
-                "," + accion +
-                "," + nodoPadre +
-                ')';
+                "," + accion+ ")"
+                +"\n"+ nodoPadre;
     }
 }
