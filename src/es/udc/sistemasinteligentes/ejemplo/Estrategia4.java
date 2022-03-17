@@ -6,7 +6,9 @@ import java.util.ArrayList;
 
 public class Estrategia4 implements EstrategiaBusqueda {
 
-    public Estrategia4() {
+    public Estrategia4() {{{
+    }
+    }
     }
 
     @Override
