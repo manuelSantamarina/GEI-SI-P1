@@ -5,7 +5,7 @@ import es.udc.sistemasinteligentes.ejemplo.ProblemaAspiradora;
 public class ProblemaCuadradoMagico extends ProblemaBusqueda{
 
     public static class EstadoCuadrado extends Estado {
-        private int[][] cuadrado;
+        public int[][] cuadrado;
         public EstadoCuadrado(int[][] valoresIniciales){
             this.cuadrado = valoresIniciales;
         }
