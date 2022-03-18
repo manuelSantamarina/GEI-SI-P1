@@ -11,7 +11,11 @@ public class Nodo {
     public Nodo(Estado estado, Accion accion, Nodo nodoPadre) {
         this.estado = estado;
         this.accion = accion;
+<<<<<<< HEAD
+        this.nodoPadre = nodo;
+=======
         this.nodoPadre = nodoPadre;
+>>>>>>> wip
     }
 
     public Estado getEstado() {
