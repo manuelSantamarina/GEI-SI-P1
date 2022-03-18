@@ -1,8 +1,8 @@
 package es.udc.sistemasinteligentes;
 
-import es.udc.sistemasinteligentes.ejemplo.ProblemaAspiradora;
-
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ProblemaCuadradoMagico extends ProblemaBusqueda{
 
@@ -18,24 +18,19 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda{
 
         @Override
         public boolean equals(Object obj) {
-
-            if(obj.equals(this.cuadrado)){
-                return true;
-            }
-            return false;
+            return obj.equals(this.cuadrado);
         }
 
         @Override
         public int hashCode() {
-            int result = this.cuadrado.hashCode();
-            return result;
+            return Arrays.deepHashCode(this.cuadrado);
         }
 
         public int getCasillasLibres() {
             int casillasLibres = 0;
-            for (int i = 0; i < this.cuadrado.length; i++) {
+            for (int[] ints : this.cuadrado) {
                 for (int j = 0; j < this.cuadrado.length; j++) {
-                    if(this.cuadrado[i][j] == 0){
+                    if (ints[j] == 0) {
                         casillasLibres++;
                     }
                 }
@@ -43,11 +38,7 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda{
             return casillasLibres;
         }
         public boolean isFull(){
-            if (this.getCasillasLibres() == 0){
-                return true;
-            }else{
-                return false;
-            }
+            return this.getCasillasLibres() == 0;
 
         }
     }
@@ -55,9 +46,9 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda{
     public static class AccionCuadrado extends Accion{
 
 
-        private int numero;
-        private int x;
-        private int y;
+        private final int numero;
+        private final int x;
+        private final int y;
 
         public AccionCuadrado(int numero, int x, int y) {
             this.numero = numero;
@@ -84,9 +75,6 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda{
     }
 
 
-
-    private Accion[] listaAcciones;
-
     public ProblemaCuadradoMagico(EstadoCuadrado estadoInicial){
         super(estadoInicial);
     }
@@ -97,11 +85,11 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda{
         int n = ((EstadoCuadrado) es).cuadrado.length;
         int[][] cuadrado = ((EstadoCuadrado) es).cuadrado;
         //Comprobar filas
-        for (int i = 0; i < cuadrado.length; i++) {
+        for (int[] ints : cuadrado) {
             for (int j = 0; j < cuadrado[0].length; j++) {
-                suma += cuadrado[i][j];
+                suma += ints[j];
             }
-            if(suma != (n*(n*n+1))/2){
+            if (suma != (n * (n * n + 1)) / 2) {
                 isMeta = false;
             }
             suma = 0;
@@ -145,15 +133,15 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda{
         //Rellenar n cuadrados con los números que no se hayan puesto ya.
 
 
-        this.listaAcciones = new Accion[numAcciones];
+        Accion[] listaAcciones = new Accion[numAcciones];
         //generamos la lista de acciones:
 
-        ArrayList ocupados = new ArrayList<>();
+        List<Object> ocupados = new ArrayList<>();
 
-        for (int x = 0; x < ((EstadoCuadrado) es).cuadrado.length; x++) {
-            for (int y = 0; y < ((EstadoCuadrado) es).cuadrado.length; y++) {
+        for (int x = 0; x < n; x++) {
+            for (int y = 0; y < n; y++) {
                 if(((EstadoCuadrado) es).cuadrado[x][y] == 0){
-                    for (int i = 0; i < ((EstadoCuadrado) es).cuadrado.length*((EstadoCuadrado) es).cuadrado.length; i++) { //bucle número
+                    for (int i = 0; i < n*n;i++) { //bucle número
                         //Añadir check de que no sea
                         if(!ocupados.contains(i)){
                             listaAcciones[i] = new AccionCuadrado(i, x, y);
