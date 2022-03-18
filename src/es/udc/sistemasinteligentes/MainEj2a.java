@@ -17,14 +17,15 @@ public class MainEj2a {
         EstrategiaBusqueda profundidad = new BusquedaProfundidad();
         EstrategiaBusqueda anchura = new BusquedaAnchura();
 
+        Nodo[] solCuadradoAAnch = anchura.soluciona(cuadradoA);
+        Nodo[] solCuadradoBAnch = anchura.soluciona(cuadradoB);
+        Nodo[] solCuadradoCAnch = anchura.soluciona(cuadradoC);
 
         Nodo[] solCuadradoAProf = profundidad.soluciona(cuadradoA);
         Nodo[] solCuadradoBProf = profundidad.soluciona(cuadradoB);
         Nodo[] solCuadradoCProf = profundidad.soluciona(cuadradoC);
 
-        Nodo[] solCuadradoAAnch = anchura.soluciona(cuadradoA);
-        Nodo[] solCuadradoBAnch = anchura.soluciona(cuadradoB);
-        Nodo[] solCuadradoCAnch = anchura.soluciona(cuadradoC);
+
 
 
     }
