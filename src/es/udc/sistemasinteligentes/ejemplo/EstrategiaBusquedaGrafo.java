@@ -12,12 +12,13 @@ public class EstrategiaBusquedaGrafo implements EstrategiaBusqueda {
     public Queue<Nodo> sucesores(ProblemaBusqueda p, Estado estadoActual, Nodo nodoPadre, ArrayList<Estado> explorados, Queue<Nodo> frontera, Printer printer) {
         Accion[] accionesDisponibles = p.acciones(estadoActual);
         Estado sc;
-        boolean presente = false;
+        boolean presente;
         for (Accion acc : accionesDisponibles) {
             if (acc.esAplicable(estadoActual)) {
                 sc = p.result(estadoActual, acc);
                 printer.print(" - RESULT(" + estadoActual + "," + acc + ")=" + sc);
                 if (!explorados.contains(sc)) {
+                    presente = false;
                     printer.print(" - " + sc + " NO explorado");
                     for (Nodo node : frontera) {
                         if (node.getEstado() == sc) {
@@ -26,14 +27,14 @@ public class EstrategiaBusquedaGrafo implements EstrategiaBusqueda {
                         }
                     }
                     if (!presente) {
-                        //printer.print(" - " + sc + " NO está en la frontera");
                         frontera.add(new Nodo(sc, acc, nodoPadre));
-
                     }
                 } else {
                     printer.print(" - " + sc + " ya explorado");
                 }
-
+            }
+            else{
+                printer.print(acc + " no es aplicable");
             }
         }
         return frontera;
@@ -55,14 +56,12 @@ public class EstrategiaBusquedaGrafo implements EstrategiaBusqueda {
         while (true){
             if(frontera.isEmpty()){
                 throw new Exception("No hay solución");
-            }
-            else{ //cogemos el primer nodo de la cola
+            }else{ //cogemos el primer nodo de la cola
                 aux = frontera.poll();
             }
             if(p.esMeta(aux.getEstado())){
-                //printer.print(" - " + aux.getEstado() + " es meta");
                 break;
-            } else{
+            }else{
                 printer.print(" - " + estadoActual + " no es meta");
                 explorados.add(estadoActual);
                 frontera = sucesores(p, estadoActual, aux, explorados, frontera, printer);
