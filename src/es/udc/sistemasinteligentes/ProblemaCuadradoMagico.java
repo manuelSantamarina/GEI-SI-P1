@@ -74,8 +74,10 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda{
 
         @Override
         public Estado aplicaA(Estado es) {
+            EstadoCuadrado esCu = (EstadoCuadrado) es;
 
-
+            esCu.cuadrado[x][y] = numero;
+            return new EstadoCuadrado(esCu.cuadrado);
         }
     }
 
