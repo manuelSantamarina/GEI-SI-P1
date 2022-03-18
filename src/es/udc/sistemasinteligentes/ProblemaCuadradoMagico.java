@@ -2,6 +2,8 @@ package es.udc.sistemasinteligentes;
 
 import es.udc.sistemasinteligentes.ejemplo.ProblemaAspiradora;
 
+import java.util.ArrayList;
+
 public class ProblemaCuadradoMagico extends ProblemaBusqueda{
 
     public static class EstadoCuadrado extends Estado {
@@ -146,17 +148,19 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda{
         this.listaAcciones = new Accion[numAcciones];
         //generamos la lista de acciones:
 
-        int[] ocupados = new int[n*n];
-        int nocupados = 0;
+        ArrayList ocupados = new ArrayList<>();
+
         for (int x = 0; x < ((EstadoCuadrado) es).cuadrado.length; x++) {
             for (int y = 0; y < ((EstadoCuadrado) es).cuadrado.length; y++) {
                 if(((EstadoCuadrado) es).cuadrado[x][y] == 0){
                     for (int i = 0; i < ((EstadoCuadrado) es).cuadrado.length*((EstadoCuadrado) es).cuadrado.length; i++) { //bucle número
-                        listaAcciones[i] = new AccionCuadrado(i, x, y);
+                        //Añadir check de que no sea
+                        if(!ocupados.contains(i)){
+                            listaAcciones[i] = new AccionCuadrado(i, x, y);
+                        }
                     }
                 }else{
-                        ocupados[nocupados] = ((EstadoCuadrado) es).cuadrado[x][y];
-                        nocupados++;
+                    ocupados.add(((EstadoCuadrado) es).cuadrado[x][y]);
                     }
                 }
             }
