@@ -74,7 +74,7 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda{
 
         @Override
         public Estado aplicaA(Estado es) {
-            EstadoCuadrado esCu = (EstadoCuadrado)es;
+
 
         }
     }
