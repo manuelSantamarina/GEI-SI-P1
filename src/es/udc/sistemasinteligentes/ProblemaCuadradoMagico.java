@@ -137,21 +137,27 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda{
 
         //La lista de acciones se compone por todas las acciones aplicables al cuadrado.
         int numAcciones = casillasLibres * casillasLibres;
-
+        int n = ((EstadoCuadrado) es).cuadrado.length;
         //Rellenar n cuadrados con los números que no se hayan puesto ya.
 
 
         this.listaAcciones = new Accion[numAcciones];
         //generamos la lista de acciones:
 
-        for (int i = 0; i < listaAcciones.length; i++) {
-            listaAcciones[i] = new AccionCuadrado();
-        }
-
-
-
-
-
+        int[] ocupados = new int[n*n];
+        int nocupados = 0;
+        for (int x = 0; x < ((EstadoCuadrado) es).cuadrado.length; x++) {
+            for (int y = 0; y < ((EstadoCuadrado) es).cuadrado.length; y++) {
+                if(((EstadoCuadrado) es).cuadrado[x][y] == 0){
+                    for (int i = 0; i < ((EstadoCuadrado) es).cuadrado.length*((EstadoCuadrado) es).cuadrado.length; i++) { //bucle número
+                        listaAcciones[i] = new AccionCuadrado(i, x, y);
+                    }
+                }else{
+                        ocupados[nocupados] = ((EstadoCuadrado) es).cuadrado[x][y];
+                        nocupados++;
+                    }
+                }
+            }
         return listaAcciones;
     }
 }
