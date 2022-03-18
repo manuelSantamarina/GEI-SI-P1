@@ -25,19 +25,46 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda{
 
         @Override
         public int hashCode() {
-            return this.
+            int result = this.cuadrado.hashCode();
+            return result;
+        }
+
+        public int getCasillasLibres() {
+            int casillasLibres = 0;
+            for (int i = 0; i < this.cuadrado.length; i++) {
+                for (int j = 0; j < this.cuadrado.length; j++) {
+                    if(this.cuadrado[i][j] == 0){
+                        casillasLibres++;
+                    }
+                }
+            }
+            return casillasLibres;
+        }
+        public boolean isFull(){
+            if (this.getCasillasLibres() == 0){
+                return true;
+            }else{
+                return false;
+            }
+
         }
     }
 
     public static class AccionCuadrado extends Accion{
 
-        public enum Tipo{RELLENAR};
-        private Tipo tipo;
 
-        public AccionCuadrado(Tipo tipo) {this.tipo = tipo;}
+        private int numero;
+        private int x;
+        private int y;
+
+        public AccionCuadrado(int numero, int x, int y) {
+            this.numero = numero;
+            this.x = x;
+            this.y = y;
+        }
         @Override
         public String toString() {
-            return tipo.name();
+            return "Acción: Rellenar con "+this.numero+" en las coordenadas X: "+this.x+"Y: "+this.y;
         }
 
         @Override
@@ -47,7 +74,8 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda{
 
         @Override
         public Estado aplicaA(Estado es) {
-            return null;
+            EstadoCuadrado esCu = (EstadoCuadrado)es;
+
         }
     }
 
@@ -105,9 +133,25 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda{
 
     @Override
     public Accion[] acciones(Estado es) {
+        int casillasLibres = ((EstadoCuadrado)es).getCasillasLibres();
+
         //La lista de acciones se compone por todas las acciones aplicables al cuadrado.
-        // Es decir, el número de casillas libres al cuadrado.
-        // Estas acciones son aplicables
+        int numAcciones = casillasLibres * casillasLibres;
+
+        //Rellenar n cuadrados con los números que no se hayan puesto ya.
+
+
+        this.listaAcciones = new Accion[numAcciones];
+        //generamos la lista de acciones:
+
+        for (int i = 0; i < listaAcciones.length; i++) {
+            listaAcciones[i] = new AccionCuadrado();
+        }
+
+
+
+
+
         return listaAcciones;
     }
 }
