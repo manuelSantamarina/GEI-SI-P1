@@ -16,7 +16,7 @@ public class BusquedaAnchura implements EstrategiaBusqueda{
         }
     }
 
-    public Queue<Nodo> sucesores(ProblemaBusqueda p, Estado estadoActual, Nodo nodoPadre, ArrayList<Estado> explorados, Queue<Nodo> frontera, EstrategiaBusquedaGrafo.Printer printer) {
+    public Queue<Nodo> sucesores(ProblemaBusqueda p, Estado estadoActual, Nodo nodoPadre, ArrayList<Estado> explorados, Queue<Nodo> frontera, Printer printer) {
         Accion[] accionesDisponibles = p.acciones(estadoActual);
         Estado sc;
         boolean presente;
@@ -71,7 +71,7 @@ public class BusquedaAnchura implements EstrategiaBusqueda{
             }else{
                 printer.print(" - " + estadoActual + " no es meta");
                 explorados.add(estadoActual);
-                //frontera = sucesores(p, estadoActual, aux, explorados, frontera, printer);
+                frontera = sucesores(p, estadoActual, aux, explorados, frontera, printer);
             }
             if(!frontera.isEmpty()){
                 estadoActual = frontera.peek().getEstado();
