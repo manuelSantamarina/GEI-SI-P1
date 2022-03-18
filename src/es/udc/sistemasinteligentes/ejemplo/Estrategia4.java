@@ -6,53 +6,19 @@ import java.util.ArrayList;
 
 public class Estrategia4 implements EstrategiaBusqueda {
 
-    public Estrategia4() {{{
-    }
-    }
+    public Estrategia4() {
     }
 
-    public Nodo[] reconstruye_sol(Nodo node){
-        int i = 0;
-        ArrayList<Nodo> arrayNodos = new ArrayList<>();
-        Nodo nodoActual = node;
 
-        while(nodoActual != null){
-            arrayNodos.add(nodoActual);
-            nodoActual=nodoActual.getNodo(); //Obtenemos el nodo padre
-        }
-
-        Nodo[] solucion = new Nodo[arrayNodos.size()];
-        for(Nodo nodo:arrayNodos){
-            solucion[i]=nodo;
-            i++;
-        }
-
-        return solucion;
-    }
 
     @Override
-<<<<<<< HEAD
     public Nodo[] soluciona(ProblemaBusqueda p) throws Exception{
         ArrayList<Nodo> nodosRecorridos = new ArrayList<Nodo>();
-=======
-    public Estado soluciona(ProblemaBusqueda p) throws Exception{
->>>>>>> wip
         ArrayList<Estado> explorados = new ArrayList<Estado>();
-
-        //Esto es nuestra lista de nodos explorados
-        ArrayList<Nodo> nodosExplorados = new ArrayList<>();
-
-
         Estado estadoActual = p.getEstadoInicial();
         explorados.add(estadoActual);
-<<<<<<< HEAD
         Nodo nodoPadre = null;
 
-=======
-        //Insertamos el primer nodo en la lista.
-        Nodo nodoPadre = new Nodo(estadoActual,null,null);
-        nodosExplorados.add(nodoPadre);
->>>>>>> wip
         int i = 1;
 
         System.out.println((i++) + " - Empezando búsqueda en " + estadoActual);
@@ -67,25 +33,17 @@ public class Estrategia4 implements EstrategiaBusqueda {
                 if (!explorados.contains(sc)) {
                     estadoActual = sc;
                     System.out.println((i++) + " - " + sc + " NO explorado");
-<<<<<<< HEAD
                     explorados.add(estadoActual); //Si quitamos esto entra en bucle infinito
-=======
-                    explorados.add(estadoActual);
-                    //insertamos el estado en los nodos también
-                    Nodo nodoActual = new Nodo(estadoActual,acc,nodoPadre);
-                    nodosExplorados.add(nodoActual);
-                    nodoPadre = nodoActual;
-
->>>>>>> wip
                     modificado = true;
                     //Creamos un nodo con el estado actual,
                     //la acción que se llevó a cabo para llegar a ese estado y el nodo padre al que apunta
                     Nodo node = new Nodo(estadoActual, acc, nodoPadre);
                     nodosRecorridos.add(node);
                     nodoPadre=node; //En la siguiente iteración hacemos que el nuevo
-                                    // nodo apunte a su padre (el nodo anterior)
+                    // nodo apunte a su padre (el nodo anterior)
 
                     System.out.println((i++) + " - Estado actual cambiado a " + estadoActual);
+                    //System.out.println("Nodo padre "+ (j++)+ " : " + node.getNodoPadre());
                     break;
                 }
                 else
@@ -95,11 +53,30 @@ public class Estrategia4 implements EstrategiaBusqueda {
         }
         System.out.println((i++) + " - FIN - " + estadoActual);
 
-        Nodo[] solucion = new Nodo[nodosRecorridos.size()];
+        Nodo[] nodosExplorados = new Nodo[nodosRecorridos.size()]; //Creamos una lista de Nodos
         int cont = 0;
-        for(Nodo nodo:nodosRecorridos){
-            solucion[cont] = nodo;
+        for(Nodo nodo:nodosRecorridos){ //Introducimos en la lista de nodos cada elemento del arraylist de nodosRecorridos
+            nodosExplorados[cont] = nodo;
             cont++;
+        }
+        return nodosExplorados;
+    }
+
+    @Override
+    public Nodo[] reconstruye_sol(Nodo[] explorados) throws Exception {
+        int len = 0;
+        Nodo[] solucion;
+        Nodo nodoActual = explorados[explorados.length-1];
+        do {
+            nodoActual = nodoActual.getNodoPadre();
+            len++;
+        }while (!nodoActual.isSolucion());
+
+        nodoActual = explorados[explorados.length-1];
+        solucion = new Nodo[len];
+        for(int i = 0; i < len; i++){
+            solucion[i] = nodoActual;
+            nodoActual = nodoActual.getNodoPadre();
         }
         return solucion;
     }

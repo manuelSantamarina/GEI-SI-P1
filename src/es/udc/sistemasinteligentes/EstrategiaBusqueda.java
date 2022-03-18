@@ -6,5 +6,22 @@ public interface EstrategiaBusqueda {
      * @param p Problema a solucionar
      * @return Estado meta obtenido[
      */
-    public abstract Estado soluciona(ProblemaBusqueda p) throws Exception;
+    public abstract Nodo[] soluciona(ProblemaBusqueda p) throws Exception;
+    public default Nodo[] reconstruye_sol(Nodo[] explorados) throws Exception {
+        int len = 0;
+        Nodo[] solucion;
+        Nodo nodoActual = explorados[explorados.length-1];
+        do {
+            nodoActual = nodoActual.getNodoPadre();
+            len++;
+        }while (!nodoActual.isSolucion());
+
+        nodoActual = explorados[explorados.length-1];
+        solucion = new Nodo[len];
+        for(int i = 0; i < len; i++){
+            solucion[i] = nodoActual;
+            nodoActual = nodoActual.getNodoPadre();
+        }
+        return solucion;
+    }
 }

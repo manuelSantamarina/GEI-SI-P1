@@ -1,18 +1,7 @@
-package es.udc.sistemasinteligentes.ejemplo;
+package es.udc.sistemasinteligentes;
 
-import es.udc.sistemasinteligentes.*;
-
-public class Main {
-
-    public static void main(String[] args) throws Exception {
-        ProblemaAspiradora.EstadoAspiradora estadoInicial = new ProblemaAspiradora.EstadoAspiradora(ProblemaAspiradora.EstadoAspiradora.PosicionRobot.IZQ,
-                                                                                                    ProblemaAspiradora.EstadoAspiradora.PosicionBasura.AMBAS);
-        ProblemaBusqueda aspiradora = new ProblemaAspiradora(estadoInicial);
-
-        EstrategiaBusqueda buscador = new Estrategia4();
-        Nodo[] solucion=buscador.soluciona(aspiradora);
-        System.out.println(solucion[solucion.length-1].getEstado());
-
+public class MainEj2a {
+    public static void main(String[] args) throws Exception{
         int[][] mCuadradoA = {{4,9,2},{3,5,0},{0,1,0}};
         int[][] mCuadradoB = {{2,0,0},{0,0,0},{0,0,0}};
         int[][] mCuadradoC = {{2,0,0,0},{0,0,0,0},{0,0,0,0},{0,1,0,0}};
@@ -23,6 +12,7 @@ public class Main {
         ProblemaBusqueda cuadradoA = new ProblemaCuadradoMagico(esCuadradoA);
         ProblemaBusqueda cuadradoB = new ProblemaCuadradoMagico(esCuadradoB);
         ProblemaBusqueda cuadradoC = new ProblemaCuadradoMagico(esCuadradoC);
+
 
         EstrategiaBusqueda profundidad = new BusquedaProfundidad();
         EstrategiaBusqueda anchura = new BusquedaAnchura();
@@ -35,5 +25,8 @@ public class Main {
         Nodo[] solCuadradoAAnch = anchura.soluciona(cuadradoA);
         Nodo[] solCuadradoBAnch = anchura.soluciona(cuadradoB);
         Nodo[] solCuadradoCAnch = anchura.soluciona(cuadradoC);
+
+
     }
+
 }

@@ -8,16 +8,18 @@ public class Nodo {
     Accion accion;
     Nodo nodoPadre;
 
-    public Nodo(Estado estado, Accion accion, Nodo nodoPadre) {
+    public Nodo(Estado estado, Accion accion, Nodo nodo) {
         this.estado = estado;
         this.accion = accion;
-<<<<<<< HEAD
         this.nodoPadre = nodo;
-=======
-        this.nodoPadre = nodoPadre;
->>>>>>> wip
     }
-
+    public boolean isSolucion(){
+        boolean outcome = false;
+        if(this.nodoPadre == null){
+            outcome = true;
+        }
+        return outcome;
+    }
     public Estado getEstado() {
         return estado;
     }
@@ -26,7 +28,16 @@ public class Nodo {
         return accion;
     }
 
-    public Nodo getNodo() {
+    public Nodo getNodoPadre() {
         return nodoPadre;
+    }
+
+
+    @Override
+    public String toString() {
+        return "(" +
+                estado +
+                "," + accion+ ")"
+                +"\n"+ nodoPadre;
     }
 }

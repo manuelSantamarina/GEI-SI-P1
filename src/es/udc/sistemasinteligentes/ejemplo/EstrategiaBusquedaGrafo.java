@@ -1,13 +1,7 @@
-package es.udc.sistemasinteligentes;
-
-import es.udc.sistemasinteligentes.ejemplo.EstrategiaBusquedaGrafo;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
-
-public class BusquedaAnchura implements EstrategiaBusqueda{
-
+package es.udc.sistemasinteligentes.ejemplo;
+import es.udc.sistemasinteligentes.*;
+import java.util.*;
+public class EstrategiaBusquedaGrafo implements EstrategiaBusqueda {
     public class Printer{
         int contador;
         public void print(String mensaje){
@@ -15,7 +9,6 @@ public class BusquedaAnchura implements EstrategiaBusqueda{
             System.out.println(contador + mensaje);
         }
     }
-
     public Queue<Nodo> sucesores(ProblemaBusqueda p, Estado estadoActual, Nodo nodoPadre, ArrayList<Estado> explorados, Queue<Nodo> frontera, Printer printer) {
         Accion[] accionesDisponibles = p.acciones(estadoActual);
         Estado sc;
@@ -47,20 +40,20 @@ public class BusquedaAnchura implements EstrategiaBusqueda{
         return frontera;
     }
 
-
     @Override
     public Nodo[] soluciona(ProblemaBusqueda p) throws Exception {
         ArrayList<Nodo> nodosRecorridos = new ArrayList<>();
         ArrayList<Estado> explorados = new ArrayList<>();
         Queue<Nodo> frontera = new LinkedList<>();
         Estado estadoActual = p.getEstadoInicial();
+        explorados.add(estadoActual);
         Nodo aux;
-        Printer printer = new Printer();
-        frontera.add(new Nodo(estadoActual,null,null));
+        Printer printer= new Printer();
+        frontera.add(new Nodo(estadoActual, null, null));
 
         printer.print(" - Empezando búsqueda en " + estadoActual);
 
-        while(true){
+        while (true){
             if(frontera.isEmpty()){
                 throw new Exception("No hay solución");
             }else{ //cogemos el primer nodo de la cola
