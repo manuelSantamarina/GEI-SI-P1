@@ -1,6 +1,4 @@
-package es.udc.sistemasinteligentes;
-import es.udc.sistemasinteligentes.Accion;
-import es.udc.sistemasinteligentes.Estado;
+package es.udc.sistemasinteligentes.g3_44;
 
 public class Nodo {
 

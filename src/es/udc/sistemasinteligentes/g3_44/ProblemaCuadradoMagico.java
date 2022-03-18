@@ -1,4 +1,4 @@
-package es.udc.sistemasinteligentes;
+package es.udc.sistemasinteligentes.g3_44;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,13 +7,22 @@ import java.util.List;
 public class ProblemaCuadradoMagico extends ProblemaBusqueda{
 
     public static class EstadoCuadrado extends Estado {
-        public int[][] cuadrado;
+        public int[][] cuadrado = {{4,9,2},{3,5,0},{0,1,0}};
+
         public EstadoCuadrado(int[][] valoresIniciales){
-            this.cuadrado = valoresIniciales;
+            int[][] mCuadradoA = {{4,9,2},{3,5,0},{0,1,0}};
+            this.cuadrado = mCuadradoA;
         }
         @Override
         public String toString() {
-            return null;
+            String out = "";
+            for (int i = 0; i < this.cuadrado.length; i++) {
+                for (int j = 0; j < this.cuadrado.length; j++) {
+                    out+= this.cuadrado[i][j]+",";
+                }
+                out+="\n";
+            }
+            return out;
         }
 
         @Override
@@ -76,6 +85,7 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda{
 
 
     public ProblemaCuadradoMagico(EstadoCuadrado estadoInicial){
+
         super(estadoInicial);
     }
     @Override
@@ -141,7 +151,7 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda{
         for (int x = 0; x < n; x++) {
             for (int y = 0; y < n; y++) {
                 if(((EstadoCuadrado) es).cuadrado[x][y] == 0){
-                    for (int i = 0; i < n*n;i++) { //bucle número
+                    for (int i = 1; i < n*n;i++) { //bucle número
                         //Añadir check de que no sea
                         if(!ocupados.contains(i)){
                             listaAcciones[i] = new AccionCuadrado(i, x, y);
@@ -155,3 +165,4 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda{
         return listaAcciones;
     }
 }
+

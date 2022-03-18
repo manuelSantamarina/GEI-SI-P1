@@ -1,6 +1,6 @@
-package es.udc.sistemasinteligentes.ejemplo;
+package es.udc.sistemasinteligentes.g3_44.ejemplo;
 
-import es.udc.sistemasinteligentes.*;
+import es.udc.sistemasinteligentes.g3_44.*;
 
 public class Main {
 

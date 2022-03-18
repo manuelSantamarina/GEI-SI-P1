@@ -1,5 +1,5 @@
-package es.udc.sistemasinteligentes;
-import es.udc.sistemasinteligentes.ProblemaCuadradoMagico;
+package es.udc.sistemasinteligentes.g3_44;
+
 public class HeuristicaCuadrado extends Heuristica{
 
     @Override

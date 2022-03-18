@@ -1,6 +1,4 @@
-package es.udc.sistemasinteligentes;
-
-import es.udc.sistemasinteligentes.ejemplo.EstrategiaBusquedaGrafo;
+package es.udc.sistemasinteligentes.g3_44;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -20,6 +18,9 @@ public class BusquedaAnchura implements EstrategiaBusqueda{
         Accion[] accionesDisponibles = p.acciones(estadoActual);
         Estado sc;
         boolean presente;
+        if (accionesDisponibles.length >= 1){
+
+
         for (Accion acc : accionesDisponibles) {
             if (acc.esAplicable(estadoActual)) {
                 sc = p.result(estadoActual, acc);
@@ -43,6 +44,7 @@ public class BusquedaAnchura implements EstrategiaBusqueda{
             else{
                 printer.print(acc + " no es aplicable");
             }
+        }
         }
         return frontera;
     }

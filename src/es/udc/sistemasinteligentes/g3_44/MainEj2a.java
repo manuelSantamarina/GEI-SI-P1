@@ -1,10 +1,11 @@
-package es.udc.sistemasinteligentes;
+package es.udc.sistemasinteligentes.g3_44;
 
 public class MainEj2a {
     public static void main(String[] args) throws Exception{
         int[][] mCuadradoA = {{4,9,2},{3,5,0},{0,1,0}};
         int[][] mCuadradoB = {{2,0,0},{0,0,0},{0,0,0}};
         int[][] mCuadradoC = {{2,0,0,0},{0,0,0,0},{0,0,0,0},{0,1,0,0}};
+
         ProblemaCuadradoMagico.EstadoCuadrado esCuadradoA = new ProblemaCuadradoMagico.EstadoCuadrado(mCuadradoA);
         ProblemaCuadradoMagico.EstadoCuadrado esCuadradoB = new ProblemaCuadradoMagico.EstadoCuadrado(mCuadradoB);
         ProblemaCuadradoMagico.EstadoCuadrado esCuadradoC = new ProblemaCuadradoMagico.EstadoCuadrado(mCuadradoC);

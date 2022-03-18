@@ -1,8 +1,7 @@
-package es.udc.sistemasinteligentes;
+package es.udc.sistemasinteligentes.g3_44;
 
-import es.udc.sistemasinteligentes.ejemplo.Estrategia4;
-import es.udc.sistemasinteligentes.*;
-import es.udc.sistemasinteligentes.ejemplo.ProblemaAspiradora;
+import es.udc.sistemasinteligentes.g3_44.ejemplo.Estrategia4;
+import es.udc.sistemasinteligentes.g3_44.ejemplo.ProblemaAspiradora;
 
 public class MainEj1 {
     public static void main(String[] args) throws Exception{

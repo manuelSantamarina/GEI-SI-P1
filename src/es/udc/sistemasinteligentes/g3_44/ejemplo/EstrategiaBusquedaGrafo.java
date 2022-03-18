@@ -1,5 +1,6 @@
-package es.udc.sistemasinteligentes.ejemplo;
-import es.udc.sistemasinteligentes.*;
+package es.udc.sistemasinteligentes.g3_44.ejemplo;
+import es.udc.sistemasinteligentes.g3_44.*;
+
 import java.util.*;
 public class EstrategiaBusquedaGrafo implements EstrategiaBusqueda {
     public class Printer{
